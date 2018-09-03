@@ -13,16 +13,16 @@ Cloud tech project, Cloud storage with Nextcloud, Statistics with Grafana and Pl
 This is the initial plan for our cloud technologies course project. We will create a cloud service that contains Nextcloud (for cloudstorage), Grafana (for statistics) and Plex (for streaming). These will all be run in Docker containers.
 
 ### List of services
-**1.** Dockered **Nextcloud**
-**2.** Dockered **Grafana**
-**3.** Dockered **Plex**
+1. Dockered **Nextcloud**
+2. Dockered **Grafana**
+3. Dockered **Plex**
 
 **1-3**. Run on *Amazon AWS EC2* instances.
 
 *Possible implementations*:
 
-Reverse proxy (NGINX/Apache)
-Kubernetes (**High Priority**)
+* Reverse proxy (NGINX/Apache)
+* Kubernetes (**High Priority**)
 
 
 ## References and materials
