@@ -24,6 +24,44 @@ This is the initial plan for our cloud technologies course project. We will crea
 * Reverse proxy (NGINX/Apache)
 * Kubernetes (**High Priority**)
 
+## Start off
+Walkthrough of the steps made to complete the project.
+
+### AWS EC2 Instance creation
+
+Launching EC2 Instances with Amazon Web Services. Headed to AWS console and launched an **Ubuntu 16.04 LTS EC2 instance** (t2.small) with 20GB of Standard SSD storage. Connected to the VPS using the generated **private key** and default user, which in this case is *ubuntu*.
+
+    ~$ ssh -i cloud_key.txt ubuntu@IP-ADDRESS
+
+Creating users for group members.
+
+    ~$ sudo adduser kristian
+    (Provided information for user creation)
+    ~$ sudo adduser kristian sudo
+    ~$ sudo adduser kristian adm
+    ~$ sudo adduser kristian admin
+
+Completed same steps for all group members.
+
+Next up is creation of public and private keys that are required to connect to the server.
+Each step must be done with each user.
+
+Switching user from *ubuntu* to *kristian*.
+
+     ~$ sudo su kristian
+The public keys are stored in the users home directory under .ssh/authorized_keys so we need to create those and give the right permissions for them.
+
+     ~$ cd
+     ~$ mkdir .ssh
+     ~$ touch .ssh/authorized_keys
+     ~$ cd
+     ~$ chmod 700 .ssh
+     ~$ chmod 600 .ssh/authorized_keys
+After we've created the necessary directory and file we need to generate the actual public and private keys.
+
+     ~$ ssh-keygen -t rsa -b 4096 -C "Kristians Key"
+     Name it and save it.
+     
 
 ## References and materials
 1. first
