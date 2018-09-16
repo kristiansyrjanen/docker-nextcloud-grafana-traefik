@@ -10,7 +10,7 @@ Cloud tech project, Cloud storage with Nextcloud, Statistics with Grafana and Pl
 
 #### Initial plan
 
-This is the initial plan for our cloud technologies course project. We will create a cloud service that contains Nextcloud (for cloudstorage), Grafana (for statistics) and Plex (for streaming). These will all be run in Docker containers.
+We will create a cloud service that contains Nextcloud (for cloudstorage), Grafana (for statistics) and Plex (for streaming). These will all be run in Docker containers.
 
 ### List of services
 1. Dockered **Nextcloud**
