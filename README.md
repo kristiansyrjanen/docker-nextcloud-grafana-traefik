@@ -61,7 +61,12 @@ After we've created the necessary directory and file we need to generate the act
 
      ~$ ssh-keygen -t rsa -b 4096 -C "Kristians Key"
      Name it and save it.
-     
+
+Copy the public key you just created and add it to your **authorized_keys** file.
+
+Save the private key on your desktop/laptop which you are working from and use it to connect to the instance.
+
+     ~$ ssh -i $LOCATION\my-private-key.txt kristian@IP-ADDRESS
 
 ## References and materials
 1. [Key generation with SSH](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
