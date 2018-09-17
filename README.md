@@ -64,7 +64,7 @@ After we've created the necessary directory and file we need to generate the act
      
 
 ## References and materials
-1. first
+1. 'Key generation with SSH <https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/>'
 2. second
 3. third
 4. fourth
