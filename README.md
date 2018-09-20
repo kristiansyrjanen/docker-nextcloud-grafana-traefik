@@ -68,6 +68,12 @@ Save the private key on your desktop/laptop which you are working from and use i
 
      ~$ ssh -i $LOCATION\my-private-key.txt kristian@IP-ADDRESS
 
+### Point your domain name to the EC2 instance.
+
+Assign an Elastic IP address to your instance from the Network & Security tab, Elastic IPs section. Click *"Allocate new address"* and choose your EC2 instance. This assings an IP-address to your instance. 
+
+Next open up Route 53 from the Services menu, under Networking & Content Delivery tab. We need to create a hosted zone.
+
 ## References and materials
 1. [Key generation with SSH](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
 2. [Amazon Web Services](https://aws.amazon.com/)
