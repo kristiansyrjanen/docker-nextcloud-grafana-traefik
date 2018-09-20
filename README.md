@@ -72,7 +72,7 @@ Save the private key on your desktop/laptop which you are working from and use i
 
 Assign an Elastic IP address to your instance from the Network & Security tab, Elastic IPs section. Click *"Allocate new address"* and choose your EC2 instance. This assings an IP-address to your instance. 
 
-Next open up Route 53 from the Services menu, under Networking & Content Delivery tab. We need to create a hosted zone.
+Next open up Route 53 from the Services menu, under Networking & Content Delivery tab. We need to create a hosted zone. Once you press "Create hosted zone", you fill the form on the right with your domain name and select *Public Hosted Zone*. It will automatically create two records, NS and SOA record sets. Then we need two more **Type A** records. Press *Create Record Set*, leave the *name* field blank and select *A- - IPv4 Address*. Enter the Elastic IP in the *Value* field and press the *Create* button. For the second button repeat the same steps but add **www** in the name field. Now all we need to is add the nameservers from the NS and SOA records to your domain name providers custom DNS settings.
 
 ## References and materials
 1. [Key generation with SSH](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
