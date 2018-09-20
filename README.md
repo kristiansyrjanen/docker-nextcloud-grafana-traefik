@@ -70,6 +70,6 @@ Save the private key on your desktop/laptop which you are working from and use i
 
 ## References and materials
 1. [Key generation with SSH](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
-2. second
+2. [Amazon Web Services](https://aws.amazon.com/)
 3. third
 4. fourth
