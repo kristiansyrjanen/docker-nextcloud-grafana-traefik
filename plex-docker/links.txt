@@ -1,0 +1,10 @@
+https://hub.docker.com/r/timhaak/plex/ - docker image plexille (on muitakin jos ne on parempia jonkun joka tajuu näistä enemmän)
+https://github.com/plexinc/pms-docker - toinen lupaava image, en tosin osaa kommentoida kumpi sopis meille paremmin
+https://support.plex.tv/articles/200264746-quick-start-step-by-step-guides/#using-plex-for-the-first-time - tärkein ehkä et ku se service on päällä ni http://ip:32400/web ni saa conffattuu plexin
+https://levlaz.org/using-plex-nextcloud/ - plex voi tarvita www-data-käyttäjän oikeudet
+
+Sit ehk paras
+
+https://www.youtube.com/watch?v=geyXNXJ1S6A
+
+Tol toimii koko nextcloud plex dockeris, tosin se selittaa aika paskasti
