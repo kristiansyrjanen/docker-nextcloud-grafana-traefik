@@ -1,0 +1,52 @@
+version: "2"
+services:
+  influxdb:
+    image: influxdb:1.5.4-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8086:8086"
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=telegraf
+      - INFLUXDB_USER=telegraf
+      - INFLUXDB_USER_PASSWORD=password
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:influxdb.cloudgang.online"
+      - "traefik.port=8086"
+      - "traefik.docker.network=web"
+    networks:
+      - web
+      - default
+  grafana:
+    image: grafana/grafana:4.4.1
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+     - grafana-storage:/var/lib/grafana
+     - ./log/grafana:/var/log/grafana
+    environment:
+     - GF_SECURITY_ADMIN_PASSWORD=password
+     - GF_USERS_ALLOW_SIGN_UP=false
+     - GF_SERVER_ROOT_URL=https://grafana.cloudgang.online
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:grafana.cloudgang.online"
+      - "traefik.port=3000"
+      - "traefik.docker.network=web"
+    networks:
+      - web
+      - default # The external "influx" network
+
+volumes:
+  grafana-storage:
+    external: true
+
+networks:
+  default:
+    external:
+      name: influx # The network we created
+  web:
+    external: true # For traefik
