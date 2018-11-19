@@ -2,22 +2,16 @@ version: '2'
 
 services:
   proxy:
-    # Always use a proper version! (edited)
     image: traefik:v1.6.6-alpine
-    # Feel free to change the loglevel if needed
     command: --web --docker --logLevel=INFO
     restart: unless-stopped
-    # Here's the network we created
     networks:
       - web
-    # The traefik entryPoints
     ports:
       - "80:80"
       - "443:443"
     labels:
-      # Make sure this domain points to your IP so that traefik can request a cert
       - "traefik.frontend.rule=Host:traefik.cloudgang.online"
-      # Traefik will proxy to its own GUI
       - "traefik.port=8080" 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
