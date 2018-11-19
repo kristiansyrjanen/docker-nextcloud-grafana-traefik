@@ -74,6 +74,89 @@ Assign an Elastic IP address to your instance from the Network & Security tab, E
 
 Next open up Route 53 from the Services menu, under Networking & Content Delivery tab. We need to create a hosted zone. Once you press "Create hosted zone", you fill the form on the right with your domain name and select *Public Hosted Zone*. It will automatically create two records, NS and SOA record sets. Then we need two more **Type A** records. Press *Create Record Set*, leave the *name* field blank and select *A - IPv4 Address*. Enter the Elastic IP in the *Value* field and press the *Create* button. For the second button repeat the same steps but add **www** in the name field. Now all we need to is add the nameservers from the NS and SOA records to your domain name providers custom DNS settings.
 
+## Traefik with Docker-Compose
+
+To run containers with Docker-Compose you need to configure a YAML file called docker-compose.yml, this file contains all needed configurations your containers need. You can see what image Docker uses, which ports are exposed and more. Below is the docker-compose.yml file for running Traefik.
+
+    version: '2'
+
+    services:
+      proxy:
+        image: traefik:v1.6.6-alpine
+        command: --web --docker --logLevel=INFO
+        restart: unless-stopped
+        networks:
+          - web
+        ports:
+          - "80:80"
+          - "443:443"
+        labels:
+          - "traefik.frontend.rule=Host:traefik.cloudgang.online"
+          - "traefik.port=8080"
+          - "traefik.frontend.auth.basic=admin:$$apr1$$okLV2vIj$$sQ5fMc.LH88SsD4uYbiMT1"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /opt/traefik/traefik.toml:/traefik.toml
+          - /opt/traefik/acme.json:/acme.json
+    networks:
+      web:
+        external: true
+
+We also need a configuration file for traefik itself, it's called traefik.toml. Here you configure your ports, domain names, Let's Encrypt details and more. Below you can see the traefik.toml file.
+
+    debug = false
+
+    defaultEntryPoints = ["https","http"]
+
+    [entryPoints]
+      [entryPoints.http]
+      address = ":80"
+        [entryPoints.http.redirect]
+        entryPoint = "https"
+      [entryPoints.https]
+      address = ":443"
+      [entryPoints.https.tls]
+
+    [retry]
+
+    [docker]
+    endpoint = "unix:///var/run/docker.sock"
+    domain = "traefik.cloudgang.online"
+    watch = true
+    exposedbydefault = false
+
+    [acme]
+    email = "your@email"
+    storage = "acme.json"
+    entryPoint = "https"
+    OnHostRule = true
+    [acme.httpChallenge]
+    entryPoint = "http"
+
+    # Enable web configuration backend
+    [web]
+
+    # Traefik proxied GUI
+    address = ":8080"
+
+Lastly we need some basic authorization as we expose our traefik GUI to the internet. We add one more line to our docker-compose.yml file which gives us our basic auth. We use htpasswd to do this for our desired username.
+
+    htpasswd -n admin
+
+Type your password, retype it and then you will receive a string which is then used in you docker-compose.yml file. Dollar-signs ($) need to be escaped with another $ in YAML.
+
+    admin:$$apr1$$1vNovEMY$$78uSc43ntXVyZCkRklESS0
+
+Let's add the following string to our docker-compose.yml under the *- labels* section.
+
+    - "traefik.frontend.auth.basic=admin:$$apr1$$1vNovEMY$$78uSc43ntXVyZCkRklESS0"
+
+Now we need to run Docker-Compose and we should have Traefik up and running with basic authorization.
+
+    sudo docker-compose up -d
+
+
+
 ## References and materials
 1. [Key generation with SSH](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
 2. [Amazon Web Services](https://aws.amazon.com/)
