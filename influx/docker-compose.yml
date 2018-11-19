@@ -38,7 +38,7 @@ services:
       - "traefik.docker.network=web"
     networks:
       - web
-      - default # The external "influx" network
+      - default # external influx
 
 volumes:
   grafana-storage:
@@ -47,6 +47,6 @@ volumes:
 networks:
   default:
     external:
-      name: influx # The network we created
+      name: influx
   web:
-    external: true # For traefik
+    external: true # traefik
