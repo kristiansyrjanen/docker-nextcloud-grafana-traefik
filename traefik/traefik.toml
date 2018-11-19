@@ -2,7 +2,6 @@ debug = false
 
 defaultEntryPoints = ["https","http"]
 
-# The syntax is somewhat esoteric IMHO so this is mostly copy-paste
 [entryPoints]
   [entryPoints.http]
   address = ":80"
@@ -31,5 +30,5 @@ entryPoint = "http"
 # Enable web configuration backend
 [web]
 
-# Web administration port, proxied in docker-compose.yml
+# Traefik proxied GUI
 address = ":8080"
