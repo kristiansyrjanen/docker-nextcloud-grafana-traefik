@@ -78,7 +78,7 @@ Next open up Route 53 from the Services menu, under Networking & Content Deliver
 
 To run containers with Docker-Compose you need to configure a YAML file called docker-compose.yml, this file contains all needed configurations your containers need. You can see what image Docker uses, which ports are exposed and more. Below is the docker-compose.yml file for running Traefik.
 
-    version: '2'
+    version: '3'
 
     services:
       proxy:
