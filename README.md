@@ -74,6 +74,10 @@ Assign an Elastic IP address to your instance from the Network & Security tab, E
 
 Next open up Route 53 from the Services menu, under Networking & Content Delivery tab. We need to create a hosted zone. Once you press "Create hosted zone", you fill the form on the right with your domain name and select *Public Hosted Zone*. It will automatically create two records, NS and SOA record sets. Then we need two more **Type A** records. Press *Create Record Set*, leave the *name* field blank and select *A - IPv4 Address*. Enter the Elastic IP in the *Value* field and press the *Create* button. For the second button repeat the same steps but add **www** in the name field. Now all we need to is add the nameservers from the NS and SOA records to your domain name providers custom DNS settings.
 
+## Security groups
+
+To make the following applications exposed and visible to the internet we need to open up a number of different ports. These are done in the AWS Security Groups which you've already associated with your instance while creating it. At the moment we've only got one port open and that is port 22/tcp which is used for SSH.
+
 ## Traefik with Docker-Compose
 
 To run containers with Docker-Compose you need to configure a YAML file called docker-compose.yml, this file contains all needed configurations your containers need. You can see what image Docker uses, which ports are exposed and more. Below is the docker-compose.yml file for running Traefik.
