@@ -12,7 +12,8 @@ services:
       - "443:443"
     labels:
       - "traefik.frontend.rule=Host:traefik.cloudgang.online"
-      - "traefik.port=8080" 
+      - "traefik.port=8080"
+      - "traefik.frontend.auth.basic=username:htpasswdhashstring"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/traefik/traefik.toml:/traefik.toml
