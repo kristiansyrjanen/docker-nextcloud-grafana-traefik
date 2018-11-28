@@ -1,5 +1,5 @@
-# docker-nextcloud-grafana-plex
-Cloud tech project, Cloud storage with Nextcloud, Statistics with Grafana and Plex for streaming, all in Docker containers.
+# docker-nextcloud-grafana-traefik
+Cloud tech project, Cloud storage with Nextcloud, Traefik and Statistics with Grafana all in Docker containers.
 
 ## Cloud technologies course project
 
@@ -10,12 +10,12 @@ Cloud tech project, Cloud storage with Nextcloud, Statistics with Grafana and Pl
 
 #### Initial plan
 
-We will create a cloud service that contains Nextcloud (for cloudstorage), Grafana (for statistics) and Plex (for streaming). These will all be run in Docker containers.
+We will create a cloud service that contains Nextcloud (for cloudstorage), Grafana (for statistics) and Traefik. These will all be run in Docker containers.
 
 ### List of services
 1. Dockered **Nextcloud**
 2. Dockered **Grafana**
-3. Dockered **Plex**
+3. Dockered **Traefik**
 
 **1-3**. Run on *Amazon AWS EC2* instances.
 
