@@ -21,7 +21,7 @@ We will create a cloud service that contains Nextcloud (for cloudstorage), Grafa
 
 *Possible implementations*:
 
-* ~Reverse proxy (NGINX/Apache)~ Replaced with Traefik
+* ~~Reverse proxy (NGINX/Apache)~~ Replaced with Traefik
 * Kubernetes (**High Priority**)
 
 ## Start off
